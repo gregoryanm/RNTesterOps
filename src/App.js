@@ -1,11 +1,27 @@
 import React from "react";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { Platform, StatusBar, StyleSheet, View, Text } from "react-native";
+// import { Header } from "react-native-elements";
 import { AppLoading, Asset, Font, Icon } from "expo";
 import AppNavigator from "./navigation/AppNavigator";
 
+// const DrawerButton = props => {
+//   return (
+//     <View>
+//       <TouchableOpacity
+//         onPress={() => {
+//           props.navigation.navigate("DrawerOpen");
+//         }}
+//       >
+//         <Text>Hello</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
 export default class App extends React.Component {
   state = {
-    isLoadingComplete: false
+    isLoadingComplete: false,
+    isSidebarOpen: false
   };
 
   render() {
@@ -56,6 +72,9 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    paddingTop: 10
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff"
