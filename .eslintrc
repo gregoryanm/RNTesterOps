@@ -1,0 +1,15 @@
+{
+  "extends": [
+  "rallycoding"
+  ],
+   "globals": {
+    "fetch": false
+  },
+  "rules": {
+    "arrow-body-style": 0,
+     no-underscore-dangle: ["error", { "allowAfterThis": true }],
+     "react/sort-comp": [0],
+     "no-else-return": 0,
+     "quotes": ["error", "double"]
+    }
+}
