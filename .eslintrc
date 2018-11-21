@@ -6,6 +6,8 @@
     "fetch": false
   },
   "rules": {
+    global-require: "error",
+       "jsx-a11y/label-has-for": 0,
     "react/jsx-curly-spacing": [2, {"when": "never", "allowMultiline": false, "spacing": {"objectLiterals": "always"}}],
     "arrow-body-style": 0,
      no-underscore-dangle: ["error", { "allowAfterThis": true }],

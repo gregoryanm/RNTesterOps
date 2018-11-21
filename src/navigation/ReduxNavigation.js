@@ -3,6 +3,10 @@ import * as ReactNavigation from "react-navigation";
 import { connect } from "react-redux";
 import AppNavigation from "./MainTabNavigator";
 
+// 
+// const initialState = AppNavigation.router.getStateForAction(
+//   AppNavigation.router.getActionForPathAndParams("login")
+// );
 // here is our redux-aware our smart component
 function ReduxNavigation(props) {
   const { dispatch, nav } = props;

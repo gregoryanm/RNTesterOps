@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
+// import { Image } from "react-native-elements";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
