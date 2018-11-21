@@ -1,14 +1,11 @@
 import React from "react";
 import { Animated, Easing } from "react-native";
-import {
-  createStackNavigator,
-  createDrawerNavigator
-} from "react-navigation";
+import { createStackNavigator, createDrawerNavigator } from "react-navigation";
 
 import { Button } from "react-native-elements";
-import SignUpScreen from "../screens/SignUpScreen";
-import LoginScreen from "../screens/LoginScreen";
-import ForgottenPasswordScreen from "../screens/ForgottenPasswordScreen";
+import SignUpScreen from "../screens/Logins/SignUpScreen";
+import LoginScreen from "../screens/Logins/LoginScreen";
+import ForgottenPasswordScreen from "../screens/Logins/ForgottenPasswordScreen";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
@@ -18,10 +15,10 @@ import DrawerContainer from "../screens/DrawerContainer";
 // drawer stack
 const DrawerStack = createDrawerNavigator(
   {
-    profilesScreen: { screen: ProfilesScreen },
     linksScreen: { screen: LinksScreen },
     settingsScreen: { screen: SettingsScreen },
-    homeScreen: { screen: HomeScreen }
+    homeScreen: { screen: HomeScreen },
+    profilesScreen: { screen: ProfilesScreen }
   },
   {
     gesturesEnabled: false,
@@ -57,7 +54,11 @@ const LoginStack = createStackNavigator(
   {
     headerMode: "float",
     navigationOptions: {
-      headerStyle: { backgroundColor: "rgb(112,128,144)", color: "white", textAlign: "center" },
+      headerStyle: {
+        backgroundColor: "rgb(112,128,144)",
+        color: "white",
+        textAlign: "center"
+      },
       title: "Welcome, please sign in."
     }
   }

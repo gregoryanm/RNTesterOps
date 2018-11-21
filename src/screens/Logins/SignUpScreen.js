@@ -1,59 +1,47 @@
 import React from "react";
 import {
   StyleSheet,
+  Text,
   View,
   Dimensions,
   ImageBackground,
-  Text
+  CheckBox
 } from "react-native";
-import { Button, SocialIcon, Input } from "react-native-elements";
 import { Font } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
+
+import { Button, SocialIcon, Input } from "react-native-elements";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
-const BG_IMAGE = require(",,/../../assets/images/bg_screen1.jpg");
-export default class LoginScreen extends React.Component {
+const BG_IMAGE = require(",,/../../../assets/images/bg_screen1.jpg");
+
+export default class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       fontLoaded: false,
-      email: "",
-      email_valid: true,
-      password: "",
+      first_name: "",
+      last_name: "",
       login_failed: false,
-      showLoading: false
+      showLoading: false,
+      checker: true
     };
   }
   async componentDidMount() {
     await Font.loadAsync({
-      georgia: require(",,/../../assets/fonts/Georgia.ttf"),
-      regular: require(",,/../../assets/fonts/Montserrat-Regular.ttf"),
-      light: require(",,/../../assets/fonts/Montserrat-Light.ttf"),
-      bold: require(",,/../../assets/fonts/Montserrat-Bold.ttf")
+      georgia: require(",,/../../../assets/fonts/Georgia.ttf"),
+      regular: require(",,/../../../assets/fonts/Montserrat-Regular.ttf"),
+      light: require(",,/../../../assets/fonts/Montserrat-Light.ttf"),
+      bold: require(",,/../../../assets/fonts/Montserrat-Bold.ttf")
     });
 
     this.setState({ fontLoaded: true });
   }
-  validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return re.test(email);
-  }
-
-  submitLoginCredentials() {
-    const { showLoading } = this.state;
-
-    this.setState({
-      showLoading: !showLoading
-    });
-  }
-
   render() {
-    const { email, password, email_valid, showLoading } = this.state;
-
+    const { first_name, last_name, checker, showLoading } = this.state;
     return (
       <View style={styles.container}>
         <ImageBackground source={BG_IMAGE} style={styles.bgImage}>
@@ -78,8 +66,8 @@ export default class LoginScreen extends React.Component {
                     />
                   }
                   containerStyle={{ marginVertical: 10 }}
-                  onChangeText={email => this.setState({ email })}
-                  value={email}
+                  onChangeText={first_name => this.setState({ first_name })}
+                  value={first_name}
                   inputStyle={{ marginLeft: 10, color: "white" }}
                   keyboardAppearance="light"
                   placeholder="Email"
@@ -88,17 +76,10 @@ export default class LoginScreen extends React.Component {
                   autoCorrect={false}
                   keyboardType="email-address"
                   returnKeyType="next"
-                  ref={input => (this.emailInput = input)}
-                  onSubmitEditing={() => {
-                    this.setState({ email_valid: this.validateEmail(email) });
-                    this.passwordInput.focus();
-                  }}
+                  ref={input => (this.first_name = input)}
                   blurOnSubmit={false}
                   placeholderTextColor="white"
                   errorStyle={{ textAlign: "center", fontSize: 12 }}
-                  errorMessage={
-                    email_valid ? null : "Please enter a valid email address"
-                  }
                 />
                 <Input
                   leftIcon={
@@ -109,8 +90,8 @@ export default class LoginScreen extends React.Component {
                     />
                   }
                   containerStyle={{ marginVertical: 10 }}
-                  onChangeText={password => this.setState({ password })}
-                  value={password}
+                  onChangeText={last_name => this.setState({ last_name })}
+                  value={last_name}
                   inputStyle={{ marginLeft: 10, color: "white" }}
                   secureTextEntry={true}
                   keyboardAppearance="light"
@@ -119,7 +100,6 @@ export default class LoginScreen extends React.Component {
                   autoCorrect={false}
                   keyboardType="default"
                   returnKeyType="done"
-                  ref={input => (this.passwordInput = input)}
                   blurOnSubmit={true}
                   placeholderTextColor="white"
                 />
@@ -128,10 +108,8 @@ export default class LoginScreen extends React.Component {
                 title="LOG IN"
                 activeOpacity={1}
                 underlayColor="transparent"
-                onPress={this.submitLoginCredentials.bind(this)}
                 loading={showLoading}
                 loadingProps={{ size: "small", color: "white" }}
-                disabled={!email_valid && password.length < 8}
                 buttonStyle={{
                   height: 50,
                   width: 250,
@@ -143,25 +121,42 @@ export default class LoginScreen extends React.Component {
                 containerStyle={{ marginVertical: 10 }}
                 titleStyle={{ fontWeight: "bold", color: "white" }}
               />
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between"
-                }}
-              >
-                <SocialIcon type="facebook"  onPress={() => this.props.navigation.navigate("drawerStack")} />
-                <SocialIcon type="twitter" />
-                    <SocialIcon type="google-plus-official" />
-              </View>
+
               <View style={styles.footerView}>
-                <Text style={{ color: "grey" }}>New here?</Text>
+                <Text style={{ color: "white" }}>New here?</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between"
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: "row"
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: "#ecf0f1"
+                    }}
+                  >
+                    <CheckBox
+                      center
+                      containerStyle={{ backgroundColor: "pink" }}
+                      title="Click Here"
+                      checkedIcon="dot-circle-o"
+                      uncheckedIcon="circle-o"
+                      checked={this.state.checked}
+                    />
+                  </View>
+                </View>
                 <Button
-                  title="Create an Account"
+                  title="Privacy Statement"
                   clear
                   activeOpacity={0.5}
                   titleStyle={{ color: "white", fontSize: 15 }}
                   containerStyle={{ marginTop: -10 }}
-                  onPress={() => console.log("Account created")}
+                  onPress={() => console.log("Privacy Statement")}
                 />
               </View>
             </View>

@@ -27,23 +27,18 @@ export default class DrawerContainer extends React.Component {
           resizeMode="contain"
         />
 
+
         <Text
-          onPress={() => navigation.navigate("profilesScreen")}
+          onPress={() => navigation.navigate("linksScreen")}
           style={styles.uglyDrawerItem}
         >
           Screen 1
         </Text>
         <Text
-          onPress={() => navigation.navigate("linksScreen")}
-          style={styles.uglyDrawerItem}
-        >
-          Screen 2
-        </Text>
-        <Text
           onPress={() => navigation.navigate("settingsScreen")}
           style={styles.uglyDrawerItem}
         >
-          Screen 3
+          Screen 2
         </Text>
         <Text
           onPress={() => navigation.navigate("homeScreen")}
@@ -53,6 +48,12 @@ export default class DrawerContainer extends React.Component {
         </Text>
         <Text onPress={this.logout} style={styles.uglyDrawerItem}>
           Log Out
+        </Text>
+        <Text
+          onPress={() => navigation.navigate("profilesScreen")}
+          style={styles.uglyDrawerItem}
+        >
+          Screen 4
         </Text>
       </View>
     );
